@@ -1,5 +1,8 @@
 const http = require('http');
-const port = 3000;
+
+// Use environment variables
+const port = process.env.PORT || 3000;
+const username = process.env.USER_NAME || "Developer";
 
 const html = `
 <!DOCTYPE html>
@@ -29,7 +32,7 @@ const html = `
     p {
       margin-top: 10px;
       font-size: 1.2rem;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     @keyframes fadeInUp {
@@ -56,8 +59,8 @@ const html = `
   </style>
 </head>
 <body>
-  <h1>Hello from Node.js!</h1>
-  <p>Your Dockerized web app is up and running 🚀</p>
+  <h1>Hello, ${username}!</h1>
+  <p>Your Dockerized Node.js app is running on port ${port} 🚀</p>
   <div class="emoji">🛠️</div>
 </body>
 </html>
@@ -69,6 +72,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`✅ Server running at http://localhost:${port}`);
 });
-
