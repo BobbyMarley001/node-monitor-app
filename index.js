@@ -1,8 +1,9 @@
 const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
-// Use environment variables
 const port = process.env.PORT || 3000;
-const username = process.env.USER_NAME || "Developer";
+const username = "Bala Esakki";
 
 const html = `
 <!DOCTYPE html>
@@ -21,6 +22,7 @@ const html = `
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      text-align: center;
     }
 
     h1 {
@@ -56,21 +58,44 @@ const html = `
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
     }
+
+    img {
+      width: 120px;
+      margin-top: 20px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: fadeInUp 2s;
+    }
   </style>
 </head>
 <body>
   <h1>Hello, ${username}!</h1>
-  <p>Your Dockerized Node.js app is running on port ${port} 🚀</p>
+  <p>Your Dockerized Node.js app is live 🚀</p>
   <div class="emoji">🛠️</div>
+  <img src="/avatar.png" alt="${username}" />
 </body>
 </html>
 `;
 
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(html);
+  if (req.url === '/avatar.png') {
+    const imgPath = path.join(__dirname, 'avatar.png');
+    fs.readFile(imgPath, (err, data) => {
+      if (err) {
+        res.writeHead(404);
+        res.end('Image not found');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'image/png' });
+        res.end(data);
+      }
+    });
+  } else {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(html);
+  }
 });
 
 server.listen(port, () => {
   console.log(`✅ Server running at http://localhost:${port}`);
 });
+
