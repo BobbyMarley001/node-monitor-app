@@ -1,20 +1,16 @@
-# 👋 Hello from Node Monitor App
+👋 Hello from Node Monitor App
 
 This is a small project I built using JavaScript and Docker. It runs a tiny web server and shows a nice page in your browser.
 
----
-
-## 🌈 What It Looks Like
+ 🌈 What It Looks Like
 
 Here’s a picture of the app:
 
 ![Screenshot](./screenshot.png)
 
----
+ 🔨 How to Use It
 
-## 🔨 How to Use It
-
-### 🧪 Run with Node:
+ 🧪 Run with Node:
 
 ```bash
 node index.js
@@ -47,9 +43,8 @@ Now press:
 - `Enter` → to confirm
 - `CTRL + X` → to close nano
 
----
 
-### 🟢 Step 5: Save and Upload to GitHub
+ Save and Upload to GitHub
 
 Now upload your file and screenshot to GitHub:
 
